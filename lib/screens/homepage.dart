@@ -730,10 +730,97 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-              )
+              ),
+
+              //Nearby Merchants
+              Padding(
+                padding: EdgeInsets.only(left: width / 15),
+                child: Text(
+                  'Nearby Merchants',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              SizedBox(height: height * 0.015),
+              //!Nearby Merchants tile
+              NearbyMerchantsTile(width: width, height: height),
+              NearbyMerchantsTile(width: width, height: height),
+              SizedBox(height: height * 0.015),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class NearbyMerchantsTile extends StatelessWidget {
+  const NearbyMerchantsTile({
+    Key? key,
+    required this.width,
+    required this.height,
+  }) : super(key: key);
+
+  final double width;
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: width / 15,
+        vertical: height * 0.015,
+      ),
+      child: Stack(
+        children: [
+          Container(
+            height: height * 0.15,
+            width: width * 0.9,
+            decoration: BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.circular(20),
+              image: DecorationImage(
+                image: AssetImage('assets/images/uberEats.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+
+          //? 35 happy points
+          //TODO: Needs to fix the vector
+          Padding(
+            padding: EdgeInsets.only(top: height * 0.03),
+            child: Container(
+              height: height * 0.025,
+              width: width * 0.6,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xff2C3659),
+                    Color(0xff33A4BB),
+                    Color(0xffEE786B),
+                  ],
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.only(left: width * 0.02),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '3% Happi Points | Upto 20 points',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
