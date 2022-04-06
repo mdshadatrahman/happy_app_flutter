@@ -1,3 +1,4 @@
+import 'package:codecell_happy_app/screens/tasks_page.dart';
 import 'package:codecell_happy_app/utils/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
@@ -153,30 +154,40 @@ class HomeScreen extends StatelessWidget {
                       child: Stack(
                         children: [
                           //Box1
-                          Container(
-                            height: height * 0.115,
-                            width: width * 0.3,
-                            decoration: BoxDecoration(
-                              color: Color(0xffF7931A),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                //Todo: Change the icon
-                                Icon(
-                                  Icons.arrow_upward,
-                                  color: Colors.white,
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => TasksPage(),
                                 ),
-                                Text(
-                                  'Tasks',
-                                  style: TextStyle(
-                                    fontSize: 14,
+                              );
+                            },
+                            child: Container(
+                              height: height * 0.115,
+                              width: width * 0.3,
+                              decoration: BoxDecoration(
+                                color: Color(0xffF7931A),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  //Todo: Change the icon
+                                  Icon(
+                                    Icons.arrow_upward,
                                     color: Colors.white,
                                   ),
-                                ),
-                              ],
+                                  Text(
+                                    'Tasks',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           //Box 2
