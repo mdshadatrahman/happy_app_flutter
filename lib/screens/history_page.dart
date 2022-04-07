@@ -2,14 +2,14 @@ import 'package:codecell_happy_app/utils/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class TasksPage extends StatefulWidget {
-  const TasksPage({Key? key}) : super(key: key);
+class HistoryPage extends StatefulWidget {
+  const HistoryPage({Key? key}) : super(key: key);
 
   @override
-  State<TasksPage> createState() => _TasksPageState();
+  State<HistoryPage> createState() => _HistoryPageState();
 }
 
-class _TasksPageState extends State<TasksPage> {
+class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -42,16 +42,16 @@ class _TasksPageState extends State<TasksPage> {
                       Icons.sort,
                       color: AppColors.white,
                     ),
-                    SizedBox(width: width * 0.32),
+                    SizedBox(width: width * 0.29),
                     Text(
-                      'Task',
+                      'History',
                       style: TextStyle(
                         color: AppColors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    SizedBox(width: width * 0.17),
+                    SizedBox(width: width * 0.155),
                     Row(
                       children: [
                         Icon(
@@ -101,7 +101,7 @@ class _TasksPageState extends State<TasksPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Points',
+                            'Points & Stapm',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
@@ -109,7 +109,7 @@ class _TasksPageState extends State<TasksPage> {
                             ),
                           ),
                           Text(
-                            'Stamps',
+                            'Purchase',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
@@ -159,7 +159,6 @@ class _TasksPageState extends State<TasksPage> {
             //Card End
           ],
         ),
-        
         bottomNavigationBar: BottomNavigationBar(
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -266,99 +265,3 @@ class EarnPointsWidget extends StatelessWidget {
     );
   }
 }
-
-
-
-// Padding(
-//               padding: EdgeInsets.symmetric(
-//                 horizontal: width / 15,
-//                 vertical: height * 0.03,
-//               ),
-//               child: Container(
-//                 width: width * 1,
-//                 height: height * 0.09,
-//                 decoration: BoxDecoration(
-//                   borderRadius: BorderRadius.circular(12),
-//                   color: Colors.white,
-//                   boxShadow: [
-//                     BoxShadow(
-//                       color: Color.fromARGB(255, 213, 214, 218),
-//                       spreadRadius: 0,
-//                       blurRadius: 10,
-//                       offset: Offset(5, 5),
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//             ),
-
-
-
-
-            //Points, Stamps
-
-            // Padding(
-            //   padding: EdgeInsets.symmetric(
-            //     horizontal: width / 15,
-            //     vertical: height * 0.03,
-            //   ),
-            //   child: Stack(
-            //     children: [
-            //       Container(
-            //         width: width * 1,
-            //         height: height * 0.09,
-            //         decoration: BoxDecoration(
-            //           borderRadius: BorderRadius.circular(12),
-            //           color: Colors.white,
-            //           boxShadow: [
-            //             BoxShadow(
-            //               color: Color.fromARGB(255, 213, 214, 218),
-            //               spreadRadius: 0,
-            //               blurRadius: 10,
-            //               offset: Offset(5, 5),
-            //             ),
-            //           ],
-            //         ),
-            //         child: Padding(
-            //           padding: EdgeInsets.symmetric(horizontal: width / 15),
-            //           child: Row(
-            //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //             children: [
-            //               Text(
-            //                 'Points',
-            //                 style: TextStyle(
-            //                   fontSize: 18,
-            //                   fontWeight: FontWeight.w500,
-            //                   color: Color(0xffE37A29),
-            //                 ),
-            //               ),
-            //               Text(
-            //                 'Stamps',
-            //                 style: TextStyle(
-            //                   fontSize: 18,
-            //                   fontWeight: FontWeight.w500,
-            //                   color: Color(0xff1E130B),
-            //                 ),
-            //               ),
-            //             ],
-            //           ),
-            //         ),
-            //       ),
-
-            //       //Half bar
-            //       Padding(
-            //         padding: EdgeInsets.only(top: height * 0.075),
-            //         child: Container(
-            //           height: height * 0.015,
-            //           width: width * 0.45,
-            //           decoration: BoxDecoration(
-            //             color: Color(0xff3756CF),
-            //             borderRadius: BorderRadius.only(
-            //               bottomLeft: Radius.circular(50),
-            //               topRight: Radius.circular(50),
-            //               bottomRight: Radius.circular(50),
-            //               topLeft: Radius.circular(6),
-            //             ),
-            //           ),
-            //         ),
-            //       ),

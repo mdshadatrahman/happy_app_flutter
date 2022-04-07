@@ -1,7 +1,11 @@
+import 'package:codecell_happy_app/screens/add_voucher_coupon.dart';
+import 'package:codecell_happy_app/screens/history_page.dart';
+import 'package:codecell_happy_app/screens/points_page.dart';
 import 'package:codecell_happy_app/screens/tasks_page.dart';
 import 'package:codecell_happy_app/utils/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -174,16 +178,34 @@ class HomeScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  //Todo: Change the icon
-                                  Icon(
-                                    Icons.arrow_upward,
-                                    color: Colors.white,
+                                  Container(
+                                    height: height * 0.05,
+                                    width: height * 0.05,
+                                    margin: EdgeInsets.only(
+                                      bottom: 10,
+                                      right: width * 0.025,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Color(0xff3A260D).withOpacity(0.2),
+                                      borderRadius: BorderRadius.circular(13),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(width * 0.03),
+                                      child: SvgPicture.asset(
+                                          'assets/images/uparrow.svg'),
+                                    ),
                                   ),
-                                  Text(
-                                    'Tasks',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.white,
+                                  Container(
+                                    margin: EdgeInsets.only(
+                                      // bottom: 10,
+                                      right: width * 0.025,
+                                    ),
+                                    child: Text(
+                                      'Tasks',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -191,66 +213,119 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           //Box 2
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: width * 0.22,
-                            ),
-                            child: Container(
-                              height: height * 0.115,
-                              width: width * 0.3,
-                              decoration: BoxDecoration(
-                                color: Color(0xff1F65AB),
-                                borderRadius: BorderRadius.circular(12),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PointsPage(),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                left: width * 0.22,
                               ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  //Todo: Change the icon
-                                  Icon(
-                                    Icons.arrow_upward,
-                                    color: Colors.white,
-                                  ),
-                                  Text(
-                                    'Points',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.white,
+                              child: Container(
+                                height: height * 0.115,
+                                width: width * 0.3,
+                                decoration: BoxDecoration(
+                                  color: Color(0xff1F65AB),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      height: height * 0.05,
+                                      width: height * 0.05,
+                                      margin: EdgeInsets.only(
+                                        bottom: 10,
+                                        right: width * 0.025,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color:
+                                            Color(0xffFFFFFF).withOpacity(0.2),
+                                        borderRadius: BorderRadius.circular(13),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(width * 0.03),
+                                        child: SvgPicture.asset(
+                                            'assets/images/uparrow.svg'),
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                    Container(
+                                      margin: EdgeInsets.only(
+                                        // bottom: 10,
+                                        right: width * 0.025,
+                                      ),
+                                      child: Text(
+                                        'Points',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                           //Box3
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: width * 0.44,
-                            ),
-                            child: Container(
-                              height: height * 0.115,
-                              width: width * 0.3,
-                              decoration: BoxDecoration(
-                                color: Color(0xff462DAB),
-                                borderRadius: BorderRadius.circular(12),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HistoryPage(),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                left: width * 0.44,
                               ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  //Todo: Change the icon
-                                  Icon(
-                                    Icons.arrow_upward,
-                                    color: Colors.white,
-                                  ),
-                                  Text(
-                                    'History',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.white,
+                              child: Container(
+                                height: height * 0.115,
+                                width: width * 0.3,
+                                decoration: BoxDecoration(
+                                  color: Color(0xff462DAB),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      height: height * 0.05,
+                                      width: height * 0.05,
+                                      margin: EdgeInsets.only(
+                                        bottom: 10,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color:
+                                            Color(0xffFFFFFF).withOpacity(0.2),
+                                        borderRadius: BorderRadius.circular(13),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(width * 0.03),
+                                        child: SvgPicture.asset(
+                                            'assets/images/uparrow.svg'),
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                    Container(
+                                      child: Text(
+                                        'History',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -271,46 +346,56 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Column(
                       children: [
-                        Container(
-                          width: width * 0.4,
-                          height: height * 0.12,
-                          decoration: BoxDecoration(
-                            color: Color(0xffE5E8EE),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Add',
-                                    style: TextStyle(
-                                      color: Color(0xff0E8A4C),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                  Text(
-                                    ' voucher',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AddVoucherCoupon(),
                               ),
-                              Text(
-                                'coupon',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500,
+                            );
+                          },
+                          child: Container(
+                            width: width * 0.4,
+                            height: height * 0.12,
+                            decoration: BoxDecoration(
+                              color: Color(0xffE5E8EE),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Add',
+                                      style: TextStyle(
+                                        color: Color(0xff0E8A4C),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    Text(
+                                      ' voucher',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  'coupon',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         Container(
