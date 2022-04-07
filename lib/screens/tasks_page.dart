@@ -1,6 +1,8 @@
 import 'package:codecell_happy_app/utils/Colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 
 class TasksPage extends StatefulWidget {
   const TasksPage({Key? key}) : super(key: key);
@@ -159,7 +161,6 @@ class _TasksPageState extends State<TasksPage> {
             //Card End
           ],
         ),
-        
         bottomNavigationBar: BottomNavigationBar(
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -200,68 +201,282 @@ class EarnPointsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        left: width / 15,
-        right: width / 15,
-        top: height * 0.03,
+    return GestureDetector(
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (context) => CustomDialog1(height: height, width: width),
+        );
+      },
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: width / 15,
+          right: width / 15,
+          top: height * 0.03,
+        ),
+        child: Container(
+          width: width * 1,
+          height: height * 0.09,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: Color(0xffEFF1FF).withOpacity(0.75),
+            boxShadow: [
+              BoxShadow(
+                color: Color.fromARGB(255, 174, 226, 241),
+                spreadRadius: 0,
+                blurRadius: 10,
+                offset: Offset(5, 5),
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: width * 0.05),
+                child: Image.asset('assets/images/foodpanda.png'),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: width * 0.1),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Review this item for',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          '10 ',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Color(0xffE37A29),
+                          ),
+                        ),
+                        Text(
+                          'points !',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CustomDialog1 extends StatelessWidget {
+  const CustomDialog1({
+    Key? key,
+    required this.height,
+    required this.width,
+  }) : super(key: key);
+
+  final double height;
+  final double width;
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
       ),
       child: Container(
-        width: width * 1,
-        height: height * 0.09,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Color(0xffEFF1FF),
-          boxShadow: [
-            BoxShadow(
-              color: Color.fromARGB(255, 174, 226, 241),
-              spreadRadius: 0,
-              blurRadius: 10,
-              offset: Offset(5, 5),
-            ),
-          ],
-        ),
-        child: Row(
+        height: height * 0.3,
+        width: width * 0.8,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: EdgeInsets.only(left: width * 0.05),
-              child: Image.asset('assets/images/foodpanda.png'),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: width * 0.1),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Review this item for',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Review ',
+                  style: TextStyle(
+                    color: Color(0xffCC002A),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        '10 ',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Color(0xffE37A29),
-                        ),
-                      ),
-                      Text(
-                        'points !',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  )
-                ],
+                ),
+                Text(
+                  'this site for',
+                  style: TextStyle(
+                    color: AppColors.blackH1,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '100 ',
+                  style: TextStyle(
+                    color: Color(0xffF7931A),
+                    fontSize: 32,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Text(
+                  'points !',
+                  style: TextStyle(
+                    color: AppColors.blackH1,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              width: width * 0.4,
+              padding: EdgeInsets.only(top: height * 0.06),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  showDialog(
+                    context: context,
+                    builder: (context) =>
+                        CustomDialog2(height: height, width: width),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xffEFF1FF).withOpacity(0.8),
+                ),
+                child: Text(
+                  'Go to site',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class CustomDialog2 extends StatelessWidget {
+  const CustomDialog2({
+    Key? key,
+    required this.height,
+    required this.width,
+  }) : super(key: key);
+
+  final double height;
+  final double width;
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      child: Stack(
+        children: [
+          Lottie.network(
+            'https://assets9.lottiefiles.com/packages/lf20_prpslttf.json',
+            height: height * 0.35,
+            width: width * 0.8,
+          ),
+          Container(
+            height: height * 0.35,
+            width: width * 0.8,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(bottom: 5),
+                  child: Text(
+                    'Congratulations !!! ',
+                    style: TextStyle(
+                      color: Color(0xffCC002A),
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700,
+                      shadows: [
+                        Shadow(
+                          color: Color.fromARGB(255, 9, 46, 77),
+                          offset: Offset(0, 2),
+                          blurRadius: 5,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'You have received',
+                      style: TextStyle(
+                        color: AppColors.blackH1,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '100 ',
+                      style: TextStyle(
+                        color: Color(0xffF7931A),
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(
+                      'points!',
+                      style: TextStyle(
+                        color: AppColors.blackH1,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  width: width * 0.4,
+                  padding: EdgeInsets.only(top: height * 0.06),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xffEFF1FF).withOpacity(0.8),
+                    ),
+                    child: Text(
+                      'Done',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -362,3 +577,21 @@ class EarnPointsWidget extends StatelessWidget {
             //           ),
             //         ),
             //       ),
+
+
+
+        //     showDialog(
+        //   context: context,
+        //   builder: (ctx) => AlertDialog(
+        //     title: Text("Alert Dialog Box"),
+        //     content: Text("You have raised a Alert Dialog Box"),
+        //     actions: <Widget>[
+        //       FlatButton(
+        //         onPressed: () {
+        //           Navigator.of(ctx).pop();
+        //         },
+        //         child: Text("okay"),
+        //       ),
+        //     ],
+        //   ),
+        // );

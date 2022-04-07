@@ -210,7 +210,7 @@ class EarnPointsWidget extends StatelessWidget {
         height: height * 0.09,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: Color(0xffEFF1FF),
+          color: Color(0xffEFF1FF).withOpacity(0.75),
           boxShadow: [
             BoxShadow(
               color: Color.fromARGB(255, 174, 226, 241),

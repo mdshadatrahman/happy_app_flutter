@@ -158,7 +158,7 @@ class HomeScreen extends StatelessWidget {
                       child: Stack(
                         children: [
                           //Box1
-                          InkWell(
+                          GestureDetector(
                             onTap: () {
                               Navigator.push(
                                 context,
@@ -213,7 +213,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           //Box 2
-                          InkWell(
+                          GestureDetector(
                             onTap: () {
                               Navigator.push(
                                 context,
@@ -274,7 +274,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           //Box3
-                          InkWell(
+                          GestureDetector(
                             onTap: () {
                               Navigator.push(
                                 context,
@@ -312,7 +312,8 @@ class HomeScreen extends StatelessWidget {
                                       child: Padding(
                                         padding: EdgeInsets.all(width * 0.03),
                                         child: SvgPicture.asset(
-                                            'assets/images/uparrow.svg'),
+                                          'assets/images/uparrow.svg',
+                                        ),
                                       ),
                                     ),
                                     Container(
