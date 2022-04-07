@@ -1,6 +1,7 @@
 import 'package:codecell_happy_app/utils/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class TasksPage extends StatefulWidget {
@@ -344,7 +345,7 @@ class CustomDialog1 extends StatelessWidget {
               padding: EdgeInsets.only(top: height * 0.06),
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Get.back();
                   showDialog(
                     context: context,
                     builder: (context) =>
@@ -457,7 +458,7 @@ class CustomDialog2 extends StatelessWidget {
                   padding: EdgeInsets.only(top: height * 0.06),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      Get.back();
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xffEFF1FF).withOpacity(0.8),

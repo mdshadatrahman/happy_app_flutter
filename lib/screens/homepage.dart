@@ -6,6 +6,7 @@ import 'package:codecell_happy_app/utils/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -160,12 +161,7 @@ class HomeScreen extends StatelessWidget {
                           //Box1
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => TasksPage(),
-                                ),
-                              );
+                              Get.to(TasksPage());
                             },
                             child: Container(
                               height: height * 0.115,
@@ -215,12 +211,7 @@ class HomeScreen extends StatelessWidget {
                           //Box 2
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => PointsPage(),
-                                ),
-                              );
+                              Get.to(PointsPage());
                             },
                             child: Padding(
                               padding: EdgeInsets.only(
@@ -276,12 +267,7 @@ class HomeScreen extends StatelessWidget {
                           //Box3
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HistoryPage(),
-                                ),
-                              );
+                              Get.to(HistoryPage());
                             },
                             child: Padding(
                               padding: EdgeInsets.only(
@@ -349,12 +335,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => AddVoucherCoupon(),
-                              ),
-                            );
+                            Get.to(AddVoucherCoupon());
                           },
                           child: Container(
                             width: width * 0.4,
