@@ -5,14 +5,14 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
-class PointsPage extends StatefulWidget {
-  const PointsPage({Key? key}) : super(key: key);
+class Restaurants extends StatefulWidget {
+  const Restaurants({Key? key}) : super(key: key);
 
   @override
-  State<PointsPage> createState() => _PointsPageState();
+  State<Restaurants> createState() => _RestaurantsState();
 }
 
-class _PointsPageState extends State<PointsPage> {
+class _RestaurantsState extends State<Restaurants> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -46,26 +46,13 @@ class _PointsPageState extends State<PointsPage> {
                       color: AppColors.white,
                     ),
                     SizedBox(width: width * 0.24),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Total Points',
-                          style: TextStyle(
-                            color: AppColors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Text(
-                          '100',
-                          style: TextStyle(
-                            color: AppColors.white,
-                            fontSize: 24,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ],
+                    Text(
+                      'Restaurants',
+                      style: TextStyle(
+                        color: AppColors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                     SizedBox(width: width * 0.1),
                     Row(
@@ -86,8 +73,6 @@ class _PointsPageState extends State<PointsPage> {
                 ),
               ),
             ),
-
-            //Points, Stamps
 
             SizedBox(height: height * 0.03),
             Padding(
@@ -111,45 +96,14 @@ class _PointsPageState extends State<PointsPage> {
                         ),
                       ],
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: width / 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Points',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xffE37A29),
-                            ),
+                    child: Center(
+                      child: Text(
+                        'Notifications',
+                        style: GoogleFonts.inter(
+                          textStyle: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
                           ),
-                          Text(
-                            'Stamps',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xff1E130B),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  //Half bar
-                  Padding(
-                    padding: EdgeInsets.only(top: height * 0.075),
-                    child: Container(
-                      height: height * 0.015,
-                      width: width * 0.45,
-                      decoration: BoxDecoration(
-                        color: Color(0xff3756CF),
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(50),
-                          topRight: Radius.circular(50),
-                          bottomRight: Radius.circular(50),
-                          topLeft: Radius.circular(6),
                         ),
                       ),
                     ),
@@ -159,12 +113,64 @@ class _PointsPageState extends State<PointsPage> {
             ),
 
             //Card Start
+            SizedBox(height: height * 0.03),
+            Padding(
+              padding: EdgeInsets.only(right: width / 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    height: width * 0.08,
+                    width: width * 0.12,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Enable',
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xff118286),
+                        padding: EdgeInsets.all(0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: width * 0.08,
+                    width: width * 0.12,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Disable',
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xff878A92),
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xffC4C4C4),
+                        padding: EdgeInsets.all(0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
             //!Scroll is not working
             SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(
                 children: [
-                  EarnPointsWidget(width: width, height: height),
                   EarnPointsWidget(width: width, height: height),
                   EarnPointsWidget(width: width, height: height),
                   EarnPointsWidget(width: width, height: height),
@@ -303,68 +309,81 @@ class CustomDialog1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+      ),
       child: Container(
-        // height: height * 0.2,
-        // width: width,
+        height: height * 0.3,
+        width: width * 0.8,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  width: width * 0.35,
-                  padding: EdgeInsets.only(top: height * 0.06),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: Color(0xffF4FAFF),
-                    ),
-                    child: Text(
-                      'Redeem later',
-                      style: GoogleFonts.inter(
-                        textStyle: TextStyle(
-                          color: Color(0xff211242),
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
+                Text(
+                  'Review ',
+                  style: TextStyle(
+                    color: Color(0xffCC002A),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-                Container(
-                  width: width * 0.35,
-                  padding: EdgeInsets.only(top: height * 0.06),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Get.back();
-                      showDialog(
-                        context: context,
-                        builder: (context) =>
-                            CustomDialog2(height: height, width: width),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: Color(0xff462DAB),
-                    ),
-                    child: Text(
-                      'Redeem now',
-                      style: GoogleFonts.inter(
-                        textStyle: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
+                Text(
+                  'this site for',
+                  style: TextStyle(
+                    color: AppColors.blackH1,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '100 ',
+                  style: TextStyle(
+                    color: Color(0xffF7931A),
+                    fontSize: 32,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Text(
+                  'points !',
+                  style: TextStyle(
+                    color: AppColors.blackH1,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              width: width * 0.4,
+              padding: EdgeInsets.only(top: height * 0.06),
+              child: ElevatedButton(
+                onPressed: () {
+                  Get.back();
+                  showDialog(
+                    context: context,
+                    builder: (context) =>
+                        CustomDialog2(height: height, width: width),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xffEFF1FF).withOpacity(0.8),
+                ),
+                child: Text(
+                  'Go to site',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
             ),
           ],
         ),

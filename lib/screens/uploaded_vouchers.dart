@@ -1,17 +1,17 @@
-import 'package:codecell_happy_app/screens/uploaded_vouchers.dart';
+import 'package:codecell_happy_app/screens/add_voucher_coupon.dart';
 import 'package:codecell_happy_app/utils/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-class AddVoucherCoupon extends StatefulWidget {
-  const AddVoucherCoupon({Key? key}) : super(key: key);
+class UploadedVoucher extends StatefulWidget {
+  const UploadedVoucher({Key? key}) : super(key: key);
 
   @override
-  State<AddVoucherCoupon> createState() => _AddVoucherCouponState();
+  State<UploadedVoucher> createState() => _UploadedVoucherState();
 }
 
-class _AddVoucherCouponState extends State<AddVoucherCoupon> {
+class _UploadedVoucherState extends State<UploadedVoucher> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -44,20 +44,14 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
                       Icons.sort,
                       color: AppColors.white,
                     ),
-                    SizedBox(width: width * 0.17),
+                    // SizedBox(width: width * 0.17),
+                    SizedBox(width: width * 0.29),
+
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Add',
-                          style: TextStyle(
-                            color: AppColors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Text(
-                          'Voucher/Coupons',
+                          'Voucher',
                           style: TextStyle(
                             color: AppColors.white,
                             fontSize: 18,
@@ -66,7 +60,8 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
                         ),
                       ],
                     ),
-                    SizedBox(width: width * 0.043),
+                    SizedBox(width: width * 0.131),
+
                     Row(
                       children: [
                         Icon(
@@ -98,7 +93,7 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
                   GestureDetector(
                     onTap: () {
                       Get.off(
-                        () => UploadedVoucher(),
+                        () => AddVoucherCoupon(),
                         transition: Transition.noTransition,
                       );
                     },
@@ -130,7 +125,7 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w500,
-                                    color: Color(0xffE37A29),
+                                    color: Color(0xff1E130B),
                                   ),
                                 ),
                                 Text(
@@ -138,7 +133,7 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w500,
-                                    color: Color(0xffE37A29),
+                                    color: Color(0xff1E130B),
                                   ),
                                 ),
                               ],
@@ -148,7 +143,7 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
-                                color: Color(0xff1E130B),
+                                color: Color(0xffE37A29),
                               ),
                             ),
                           ],
@@ -159,7 +154,10 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
 
                   //Half bar
                   Padding(
-                    padding: EdgeInsets.only(top: height * 0.075),
+                    padding: EdgeInsets.only(
+                      left: width * 0.416,
+                      top: height * 0.075,
+                    ),
                     child: Container(
                       height: height * 0.015,
                       width: width * 0.45,
@@ -167,9 +165,9 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
                         color: Color(0xff3756CF),
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(50),
-                          topRight: Radius.circular(50),
+                          topLeft: Radius.circular(50),
                           bottomRight: Radius.circular(50),
-                          topLeft: Radius.circular(6),
+                          topRight: Radius.circular(6),
                         ),
                       ),
                     ),
@@ -180,38 +178,38 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
 
             //Upload container
 
-            SizedBox(
-              height: height * 0.09,
-            ),
-            Container(
-              child: Stack(
-                children: [
-                  Center(
-                    child: SvgPicture.asset(
-                      'assets/images/rectangle.svg',
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: width * 0.2),
-                    child: Column(
-                      children: [
-                        Center(
-                          child: Icon(
-                            Icons.file_upload_outlined,
-                            size: 50,
-                          ),
-                        ),
-                        Text(
-                          'upload from your gallery',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w400),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            )
+            // SizedBox(
+            //   height: height * 0.09,
+            // ),
+            // Container(
+            //   child: Stack(
+            //     children: [
+            //       Center(
+            //         child: SvgPicture.asset(
+            //           'assets/images/rectangle.svg',
+            //         ),
+            //       ),
+            //       Padding(
+            //         padding: EdgeInsets.symmetric(vertical: width * 0.2),
+            //         child: Column(
+            //           children: [
+            //             Center(
+            //               child: Icon(
+            //                 Icons.file_upload_outlined,
+            //                 size: 50,
+            //               ),
+            //             ),
+            //             Text(
+            //               'upload from your gallery',
+            //               style: TextStyle(
+            //                   fontSize: 18, fontWeight: FontWeight.w400),
+            //             )
+            //           ],
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // )
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(

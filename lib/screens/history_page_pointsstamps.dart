@@ -1,6 +1,8 @@
+import 'package:codecell_happy_app/screens/history_purchase.dart';
 import 'package:codecell_happy_app/utils/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({Key? key}) : super(key: key);
@@ -95,28 +97,36 @@ class _HistoryPageState extends State<HistoryPage> {
                         ),
                       ],
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: width / 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Points & Stapm',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xffE37A29),
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.off(
+                          () => HistoryPagePurchase(),
+                          transition: Transition.noTransition,
+                        );
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: width / 15),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Points & Stapm',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xffE37A29),
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Purchase',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xff1E130B),
+                            Text(
+                              'Purchase',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xff1E130B),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),

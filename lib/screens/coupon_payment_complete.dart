@@ -1,17 +1,18 @@
-import 'package:codecell_happy_app/screens/uploaded_vouchers.dart';
 import 'package:codecell_happy_app/utils/Colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class AddVoucherCoupon extends StatefulWidget {
-  const AddVoucherCoupon({Key? key}) : super(key: key);
+class BuyCouponsPaymentComplete extends StatefulWidget {
+  const BuyCouponsPaymentComplete({Key? key}) : super(key: key);
 
   @override
-  State<AddVoucherCoupon> createState() => _AddVoucherCouponState();
+  State<BuyCouponsPaymentComplete> createState() =>
+      _BuyCouponsPaymentCompleteState();
 }
 
-class _AddVoucherCouponState extends State<AddVoucherCoupon> {
+class _BuyCouponsPaymentCompleteState extends State<BuyCouponsPaymentComplete> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -49,7 +50,7 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Add',
+                          'Buy',
                           style: TextStyle(
                             color: AppColors.white,
                             fontSize: 18,
@@ -96,12 +97,7 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
               child: Stack(
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      Get.off(
-                        () => UploadedVoucher(),
-                        transition: Transition.noTransition,
-                      );
-                    },
+                    onTap: () {},
                     child: Container(
                       width: width * 1,
                       height: height * 0.09,
@@ -126,15 +122,7 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  'Receive points',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xffE37A29),
-                                  ),
-                                ),
-                                Text(
-                                  'from uploads',
+                                  'Buy Coupons',
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w500,
@@ -144,7 +132,7 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
                               ],
                             ),
                             Text(
-                              'Uploaded\nvouchers',
+                              'Received Coupons',
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
@@ -162,7 +150,7 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
                     padding: EdgeInsets.only(top: height * 0.075),
                     child: Container(
                       height: height * 0.015,
-                      width: width * 0.45,
+                      width: width * 0.37,
                       decoration: BoxDecoration(
                         color: Color(0xff3756CF),
                         borderRadius: BorderRadius.only(
@@ -178,41 +166,160 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
               ),
             ),
 
-            //Upload container
-
-            SizedBox(
-              height: height * 0.09,
-            ),
-            Container(
-              child: Stack(
-                children: [
-                  Center(
-                    child: SvgPicture.asset(
-                      'assets/images/rectangle.svg',
+            SizedBox(height: height * 0.03),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: width / 15),
+                  child: Text(
+                    'DONE !',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xff201308),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: width * 0.2),
+                ),
+              ],
+            ),
+            SizedBox(height: height * 0.01),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: width / 15),
+                  child: Text(
+                    'Your payment has been completed. \nThank you for your purchase !',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xff201308),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: height * 0.03),
+            Stack(
+              children: [
+                Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromARGB(255, 213, 214, 218),
+                          spreadRadius: 0,
+                          blurRadius: 10,
+                          offset: Offset(1, 1),
+                        ),
+                      ],
+                    ),
+                    child: SvgPicture.asset(
+                      'assets/images/Subtract.svg',
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: width / 5,
+                    vertical: height * 0.03,
+                  ),
+                  child: Center(
                     child: Column(
                       children: [
-                        Center(
-                          child: Icon(
-                            Icons.file_upload_outlined,
-                            size: 50,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset('assets/images/kfc2.svg'),
+                            SizedBox(width: width * 0.05),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '25% OFF',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                Text(
+                                  'KFC',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: height * 0.03),
+                        Text(
+                          'Get 25% off at your next KFC buy',
+                          style: GoogleFonts.montserrat(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
-                        Text(
-                          'upload from your gallery',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w400),
+                        SizedBox(height: height * 0.02),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(width: width * 0.07),
+                            SvgPicture.asset('assets/images/text.svg'),
+                          ],
+                        ),
+                        SizedBox(height: height * 0.045),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              'assets/images/horizontal_dots.svg',
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: height * 0.04),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/images/qr_img\ 1.png',
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: height * 0.015),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Icon(Icons.open_in_new_outlined),
+                            Text(
+                              'Valid untill 03 March 2022',
+                              style: TextStyle(
+                                fontSize: 8,
+                                color: Color(
+                                  0xff000000,
+                                ).withOpacity(0.3),
+                              ),
+                            ),
+                            Icon(Icons.info_outline)
+                          ],
                         )
                       ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             )
           ],
+        ),
+        floatingActionButton: Transform.scale(
+          scale: 0.7,
+          child: FloatingActionButton(
+            onPressed: () {},
+            child: Icon(
+              Icons.east,
+              size: 35,
+            ),
+            backgroundColor: Color(0xff462DAB),
+            elevation: 0,
+          ),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: <BottomNavigationBarItem>[

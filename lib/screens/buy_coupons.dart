@@ -1,17 +1,20 @@
+import 'package:codecell_happy_app/screens/buy_coupons_details.dart';
+import 'package:codecell_happy_app/screens/received_coupons.dart';
 import 'package:codecell_happy_app/screens/uploaded_vouchers.dart';
 import 'package:codecell_happy_app/utils/Colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-class AddVoucherCoupon extends StatefulWidget {
-  const AddVoucherCoupon({Key? key}) : super(key: key);
+class BuyCoupons extends StatefulWidget {
+  const BuyCoupons({Key? key}) : super(key: key);
 
   @override
-  State<AddVoucherCoupon> createState() => _AddVoucherCouponState();
+  State<BuyCoupons> createState() => _BuyCouponsState();
 }
 
-class _AddVoucherCouponState extends State<AddVoucherCoupon> {
+class _BuyCouponsState extends State<BuyCoupons> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -49,7 +52,7 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Add',
+                          'Buy',
                           style: TextStyle(
                             color: AppColors.white,
                             fontSize: 18,
@@ -98,7 +101,7 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
                   GestureDetector(
                     onTap: () {
                       Get.off(
-                        () => UploadedVoucher(),
+                        () => ReceivedCoupons(),
                         transition: Transition.noTransition,
                       );
                     },
@@ -126,15 +129,7 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  'Receive points',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xffE37A29),
-                                  ),
-                                ),
-                                Text(
-                                  'from uploads',
+                                  'Buy Coupons',
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w500,
@@ -144,7 +139,7 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
                               ],
                             ),
                             Text(
-                              'Uploaded\nvouchers',
+                              'Received Coupons',
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
@@ -162,7 +157,7 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
                     padding: EdgeInsets.only(top: height * 0.075),
                     child: Container(
                       height: height * 0.015,
-                      width: width * 0.45,
+                      width: width * 0.37,
                       decoration: BoxDecoration(
                         color: Color(0xff3756CF),
                         borderRadius: BorderRadius.only(
@@ -178,39 +173,14 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
               ),
             ),
 
-            //Upload container
-
-            SizedBox(
-              height: height * 0.09,
-            ),
-            Container(
-              child: Stack(
-                children: [
-                  Center(
-                    child: SvgPicture.asset(
-                      'assets/images/rectangle.svg',
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: width * 0.2),
-                    child: Column(
-                      children: [
-                        Center(
-                          child: Icon(
-                            Icons.file_upload_outlined,
-                            size: 50,
-                          ),
-                        ),
-                        Text(
-                          'upload from your gallery',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w400),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            SizedBox(height: height * 0.03),
+            Column(
+              children: [
+                CouponsTile(width: width, height: height),
+                CouponsTile(width: width, height: height),
+                CouponsTile(width: width, height: height, isBestSeller: true),
+                CouponsTile(width: width, height: height),
+              ],
             )
           ],
         ),
@@ -236,6 +206,132 @@ class _AddVoucherCouponState extends State<AddVoucherCoupon> {
           currentIndex: 1,
           selectedItemColor: Color(0xff6347EB),
           // onTap: _onItemTapped,
+        ),
+      ),
+    );
+  }
+}
+
+class CouponsTile extends StatelessWidget {
+  const CouponsTile({
+    Key? key,
+    required this.width,
+    required this.height,
+    this.isBestSeller = false,
+  }) : super(key: key);
+
+  final double width;
+  final double height;
+  final bool isBestSeller;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => BuyCouponsDetails());
+      },
+      child: Padding(
+        padding: EdgeInsets.only(bottom: height * 0.03),
+        child: Stack(
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: width / 15),
+              child: Stack(
+                children: [
+                  Container(
+                    width: width * 1,
+                    height: height * 0.13,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromARGB(255, 213, 214, 218),
+                          spreadRadius: 0,
+                          blurRadius: 2,
+                          offset: Offset(3, 5),
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: width / 15),
+                      child: Row(
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(width: width * 0.175),
+                          RotatedBox(
+                            quarterTurns: 1,
+                            child: Text(
+                              'No cash value',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: width * 0.05),
+                          SvgPicture.asset('assets/images/vertical_dots.svg'),
+                          SizedBox(width: width * 0.04),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                children: [
+                                  SvgPicture.asset('assets/images/kfc.svg'),
+                                  SizedBox(width: width * 0.03),
+                                  Text(
+                                    '25% OFF\nKFC',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: width * 0.02),
+                              Row(
+                                children: [
+                                  Text(
+                                    '•  Expire date :**-**-***',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Opacity(
+                    opacity: isBestSeller ? 1 : 0,
+                    child: Container(
+                      margin: EdgeInsets.only(left: width * 0.575),
+                      width: width * 0.17,
+                      height: height * 0.03,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(2),
+                        color: Color(0xff4B99C4),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Best Seller',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -1,6 +1,8 @@
 import 'package:codecell_happy_app/screens/add_voucher_coupon.dart';
-import 'package:codecell_happy_app/screens/history_page.dart';
+import 'package:codecell_happy_app/screens/buy_coupons.dart';
+import 'package:codecell_happy_app/screens/history_page_pointsstamps.dart';
 import 'package:codecell_happy_app/screens/points_page.dart';
+import 'package:codecell_happy_app/screens/restaurants_page.dart';
 import 'package:codecell_happy_app/screens/tasks_page.dart';
 import 'package:codecell_happy_app/utils/Colors.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +75,6 @@ class HomeScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  //Search bar
                   Padding(
                     padding: EdgeInsets.only(
                       left: width / 15,
@@ -107,8 +108,10 @@ class HomeScreen extends StatelessWidget {
                           ],
                         ),
                         SizedBox(height: height / 15),
+                        //Search bar
+
                         Container(
-                          height: height / 14,
+                          height: height / 17,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.white,
@@ -117,7 +120,7 @@ class HomeScreen extends StatelessWidget {
                             children: [
                               Container(
                                 padding: EdgeInsets.only(
-                                  top: height * 0.007,
+                                  top: height * 0.001,
                                   left: width * 0.05,
                                 ),
                                 height: height / 13,
@@ -161,7 +164,7 @@ class HomeScreen extends StatelessWidget {
                           //Box1
                           GestureDetector(
                             onTap: () {
-                              Get.to(TasksPage());
+                              Get.to(() => TasksPage());
                             },
                             child: Container(
                               height: height * 0.115,
@@ -211,7 +214,7 @@ class HomeScreen extends StatelessWidget {
                           //Box 2
                           GestureDetector(
                             onTap: () {
-                              Get.to(PointsPage());
+                              Get.to(() => PointsPage());
                             },
                             child: Padding(
                               padding: EdgeInsets.only(
@@ -267,7 +270,7 @@ class HomeScreen extends StatelessWidget {
                           //Box3
                           GestureDetector(
                             onTap: () {
-                              Get.to(HistoryPage());
+                              Get.to(() => HistoryPage());
                             },
                             child: Padding(
                               padding: EdgeInsets.only(
@@ -335,7 +338,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
-                            Get.to(AddVoucherCoupon());
+                            Get.to(() => AddVoucherCoupon());
                           },
                           child: Container(
                             width: width * 0.4,
@@ -389,46 +392,51 @@ class HomeScreen extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        Container(
-                          width: width * 0.4,
-                          height: height * 0.12,
-                          decoration: BoxDecoration(
-                            color: Color(0xffE5E8EE),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Buy',
-                                    style: TextStyle(
-                                      color: Color(0xff25ADF9),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(() => BuyCoupons());
+                          },
+                          child: Container(
+                            width: width * 0.4,
+                            height: height * 0.12,
+                            decoration: BoxDecoration(
+                              color: Color(0xffE5E8EE),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Buy',
+                                      style: TextStyle(
+                                        color: Color(0xff25ADF9),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    ' voucher',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
+                                    Text(
+                                      ' voucher',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                'coupon',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500,
+                                  ],
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  'coupon',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         Container(
@@ -617,63 +625,68 @@ class HomeScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       //Restaurants
-                      Padding(
-                        padding: EdgeInsets.only(top: height * 0.02),
-                        child: Container(
-                          height: width * 0.3,
-                          width: width * 0.3,
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color.fromARGB(255, 146, 146, 146),
-                                blurRadius: 10.0,
-                                spreadRadius: 0.0,
-                                offset: Offset(
-                                  0.0,
-                                  0.0,
-                                ), // shadow direction: bottom right
-                              )
-                            ],
-                            // color: Colors.red,
-                            borderRadius: BorderRadius.circular(20),
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                //TODO: how to refine the gradient property
-                                Color.fromARGB(255, 247, 164, 145),
-                                Color(0xffF5F5F5),
-                              ],
-                            ),
-                          ),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  height: width * 0.15,
-                                  width: width * 0.15,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Color(0xffE5EDFF),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.network(
-                                      'https://cdn-icons-png.flaticon.com/512/2927/2927347.png',
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: height * 0.01),
-                                Text(
-                                  'Restaurants',
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 241, 92, 75),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => Restaurants());
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(top: height * 0.02),
+                          child: Container(
+                            height: width * 0.3,
+                            width: width * 0.3,
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color.fromARGB(255, 146, 146, 146),
+                                  blurRadius: 5.0,
+                                  spreadRadius: 0.0,
+                                  offset: Offset(
+                                    0.0,
+                                    0.0,
+                                  ), // shadow direction: bottom right
                                 )
                               ],
+                              // color: Colors.red,
+                              borderRadius: BorderRadius.circular(20),
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  //TODO: how to refine the gradient property
+                                  Color.fromARGB(255, 247, 164, 145),
+                                  Color(0xffF5F5F5),
+                                ],
+                              ),
+                            ),
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    height: width * 0.15,
+                                    width: width * 0.15,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: Color(0xffE5EDFF),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Image.network(
+                                        'https://cdn-icons-png.flaticon.com/512/2927/2927347.png',
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: height * 0.01),
+                                  Text(
+                                    'Restaurants',
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 241, 92, 75),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -689,7 +702,7 @@ class HomeScreen extends StatelessWidget {
                             boxShadow: [
                               BoxShadow(
                                 color: Color.fromARGB(255, 146, 146, 146),
-                                blurRadius: 15.0,
+                                blurRadius: 5.0,
                                 spreadRadius: 0.0,
                                 offset: Offset(
                                   1.0,
@@ -752,7 +765,7 @@ class HomeScreen extends StatelessWidget {
                             boxShadow: [
                               BoxShadow(
                                 color: Color.fromARGB(255, 146, 146, 146),
-                                blurRadius: 15.0,
+                                blurRadius: 5.0,
                                 spreadRadius: 0.0,
                                 offset: Offset(
                                   1.0,
