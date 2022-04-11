@@ -1,20 +1,18 @@
 import 'package:codecell_happy_app/screens/buy_coupons_details.dart';
 import 'package:codecell_happy_app/screens/received_coupons.dart';
-import 'package:codecell_happy_app/screens/uploaded_vouchers.dart';
 import 'package:codecell_happy_app/utils/Colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-class BuyCoupons extends StatefulWidget {
-  const BuyCoupons({Key? key}) : super(key: key);
+class BuyCouponsTest extends StatefulWidget {
+  const BuyCouponsTest({Key? key}) : super(key: key);
 
   @override
-  State<BuyCoupons> createState() => _BuyCouponsState();
+  State<BuyCouponsTest> createState() => _BuyCouponsState();
 }
 
-class _BuyCouponsState extends State<BuyCoupons> {
+class _BuyCouponsState extends State<BuyCouponsTest> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -90,87 +88,37 @@ class _BuyCouponsState extends State<BuyCoupons> {
             ),
 
             //Points, Stamps
-            SizedBox(height: height * 0.03),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: width / 15,
-              ),
-              child: Stack(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Get.off(
-                        () => ReceivedCoupons(),
-                        transition: Transition.noTransition,
-                      );
-                    },
-                    child: Container(
-                      width: width * 1,
-                      height: height * 0.09,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color.fromARGB(255, 213, 214, 218),
-                            spreadRadius: 0,
-                            blurRadius: 10,
-                            offset: Offset(5, 5),
-                          ),
-                        ],
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: width / 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Buy Coupons',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xffE37A29),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              'Received Coupons',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                color: Color(0xff1E130B),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
 
-                  //Half bar
-                  Padding(
-                    padding: EdgeInsets.only(top: height * 0.075),
-                    child: Container(
-                      height: height * 0.015,
-                      width: width * 0.37,
-                      decoration: BoxDecoration(
-                        color: Color(0xff3756CF),
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(50),
-                          topRight: Radius.circular(50),
-                          bottomRight: Radius.circular(50),
-                          topLeft: Radius.circular(6),
-                        ),
-                      ),
-                    ),
+            SizedBox(height: height * 0.03),
+            DefaultTabController(
+              length: 2,
+              child: TabBar(
+                indicator: BoxDecoration(
+                    color: Colors.green[300],
+                    borderRadius: BorderRadius.circular(25.0)),
+                labelColor: Colors.white,
+                unselectedLabelColor: Colors.black,
+                tabs: const [
+                  Tab(
+                    text: 'Chats',
+                  ),
+                  Tab(
+                    text: 'Status',
                   ),
                 ],
               ),
             ),
+            const Expanded(
+                child: TabBarView(
+              children: [
+                Center(
+                  child: Text("Chats Pages"),
+                ),
+                Center(
+                  child: Text("Status Pages"),
+                ),
+              ],
+            )),
 
             SizedBox(height: height * 0.03),
             Column(
@@ -336,3 +284,84 @@ class CouponsTile extends StatelessWidget {
     );
   }
 }
+
+// Padding(
+//                 padding: EdgeInsets.symmetric(
+//                   horizontal: width / 15,
+//                 ),
+//                 child: Stack(
+//                   children: [
+//                     GestureDetector(
+//                       onTap: () {
+//                         Get.off(
+//                           () => ReceivedCoupons(),
+//                           transition: Transition.noTransition,
+//                         );
+//                       },
+//                       child: Container(
+//                         width: width * 1,
+//                         height: height * 0.09,
+//                         decoration: BoxDecoration(
+//                           borderRadius: BorderRadius.circular(12),
+//                           color: Colors.white,
+//                           boxShadow: [
+//                             BoxShadow(
+//                               color: Color.fromARGB(255, 213, 214, 218),
+//                               spreadRadius: 0,
+//                               blurRadius: 10,
+//                               offset: Offset(5, 5),
+//                             ),
+//                           ],
+//                         ),
+//                         child: Padding(
+//                           padding: EdgeInsets.symmetric(horizontal: width / 15),
+//                           child: Row(
+//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                             children: [
+//                               Column(
+//                                 mainAxisAlignment: MainAxisAlignment.center,
+//                                 children: [
+//                                   Text(
+//                                     'Buy Coupons',
+//                                     style: TextStyle(
+//                                       fontSize: 18,
+//                                       fontWeight: FontWeight.w500,
+//                                       color: Color(0xffE37A29),
+//                                     ),
+//                                   ),
+//                                 ],
+//                               ),
+//                               Text(
+//                                 'Received Coupons',
+//                                 style: TextStyle(
+//                                   fontSize: 18,
+//                                   fontWeight: FontWeight.w500,
+//                                   color: Color(0xff1E130B),
+//                                 ),
+//                               ),
+//                             ],
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+            
+//                     //Half bar
+//                     Padding(
+//                       padding: EdgeInsets.only(top: height * 0.075),
+//                       child: Container(
+//                         height: height * 0.015,
+//                         width: width * 0.37,
+//                         decoration: BoxDecoration(
+//                           color: Color(0xff3756CF),
+//                           borderRadius: BorderRadius.only(
+//                             bottomLeft: Radius.circular(50),
+//                             topRight: Radius.circular(50),
+//                             bottomRight: Radius.circular(50),
+//                             topLeft: Radius.circular(6),
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ),

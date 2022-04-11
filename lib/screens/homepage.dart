@@ -2,7 +2,9 @@ import 'package:codecell_happy_app/screens/add_voucher_coupon.dart';
 import 'package:codecell_happy_app/screens/buy_coupons.dart';
 import 'package:codecell_happy_app/screens/history_page_pointsstamps.dart';
 import 'package:codecell_happy_app/screens/points_page.dart';
+import 'package:codecell_happy_app/screens/received_coupons.dart';
 import 'package:codecell_happy_app/screens/restaurants_page.dart';
+import 'package:codecell_happy_app/screens/tabbar_test.dart';
 import 'package:codecell_happy_app/screens/tasks_page.dart';
 import 'package:codecell_happy_app/utils/Colors.dart';
 import 'package:flutter/material.dart';
@@ -394,7 +396,8 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Get.to(() => BuyCoupons());
+                            Get.to(() =>
+                                ReceivedCoupons()); //! Changed from buyCoupons
                           },
                           child: Container(
                             width: width * 0.4,
@@ -512,9 +515,8 @@ class HomeScreen extends StatelessWidget {
                             Center(
                               child: Row(
                                 children: [
-                                  //TODO: Change the avatar with icon/png
-                                  CircleAvatar(
-                                    radius: 30,
+                                  SvgPicture.asset(
+                                    'assets/images/randomlogo.svg',
                                   ),
                                   Padding(
                                     padding:
