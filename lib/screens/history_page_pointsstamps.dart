@@ -40,6 +40,12 @@ class _HistoryPageState extends State<HistoryPage>
       '15',
       '10',
     ];
+    List<String> pictureUrl = [
+      'assets/images/page1.jpeg',
+      'assets/images/page2.jpeg',
+      'assets/images/youtube.png',
+      'assets/images/youtube2.jpeg',
+    ];
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     var selected = false;
@@ -191,7 +197,7 @@ class _HistoryPageState extends State<HistoryPage>
                                                   BorderRadius.circular(10),
                                               image: DecorationImage(
                                                 image: AssetImage(
-                                                  'assets/images/lereve.jpg',
+                                                  pictureUrl[index],
                                                 ),
                                               ),
                                             ),
@@ -305,7 +311,7 @@ class _HistoryPageState extends State<HistoryPage>
                                                   BorderRadius.circular(10),
                                               image: DecorationImage(
                                                 image: AssetImage(
-                                                  'assets/images/lereve.jpg',
+                                                  pictureUrl[index],
                                                 ),
                                               ),
                                             ),
@@ -420,7 +426,7 @@ class _HistoryPageState extends State<HistoryPage>
                                                   BorderRadius.circular(10),
                                               image: DecorationImage(
                                                 image: AssetImage(
-                                                    'assets/images/lereve.jpg'),
+                                                    pictureUrl[index]),
                                               ),
                                             ),
                                           ),

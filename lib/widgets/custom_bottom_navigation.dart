@@ -375,8 +375,10 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         current_tab == 2
-                            ? SvgPicture.asset("assets/images/points.svg")
-                            : SvgPicture.asset("assets/images/points.svg"),
+                            ? Icon(Icons.notifications_active,
+                                color: AppColors.material)
+                            : Icon(Icons.notifications_active_outlined,
+                                color: AppColors.material),
                         Text(
                           "Notifications",
                           style: TextStyle(

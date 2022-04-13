@@ -1,21 +1,15 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:codecell_happy_app/screens/add_voucher_coupon.dart';
-import 'package:codecell_happy_app/screens/buy_coupons.dart';
 import 'package:codecell_happy_app/screens/details.dart';
 import 'package:codecell_happy_app/screens/get_points.dart';
 import 'package:codecell_happy_app/screens/history_page_pointsstamps.dart';
 import 'package:codecell_happy_app/screens/points_page.dart';
 import 'package:codecell_happy_app/screens/profile.dart';
-import 'package:codecell_happy_app/screens/received_coupons.dart';
 import 'package:codecell_happy_app/screens/restaurant_llist_page.dart';
-import 'package:codecell_happy_app/screens/restaurants_page.dart';
-import 'package:codecell_happy_app/screens/tabbar_test.dart';
 import 'package:codecell_happy_app/screens/tasks_page.dart';
 import 'package:codecell_happy_app/utils/Colors.dart';
 import 'package:codecell_happy_app/utils/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../widgets/custom_bottom_navigation.dart';
@@ -42,6 +36,13 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
+    List<String> offerImages = [
+      'assets/images/offer1.jpeg',
+      'assets/images/offer.jpeg',
+      'assets/images/offer3.jpeg',
+      'assets/images/offer2.jpeg',
+      'assets/images/offer4.png',
+    ];
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return WillPopScope(
@@ -239,9 +240,11 @@ class _HomeScreenState extends State<HomeScreen>
                                         borderRadius: BorderRadius.circular(13),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(width * 0.03),
-                                        child: SvgPicture.asset(
-                                            'assets/images/uparrow.svg'),
+                                        padding: EdgeInsets.all(width * 0.02),
+                                        child: Icon(
+                                          Icons.task,
+                                          color: Colors.white,
+                                        ),
                                       ),
                                     ),
                                     Container(
@@ -296,9 +299,11 @@ class _HomeScreenState extends State<HomeScreen>
                                               BorderRadius.circular(13),
                                         ),
                                         child: Padding(
-                                          padding: EdgeInsets.all(width * 0.03),
-                                          child: SvgPicture.asset(
-                                              'assets/images/uparrow.svg'),
+                                          padding: EdgeInsets.all(width * 0.02),
+                                          child: Icon(
+                                            Icons.point_of_sale,
+                                            color: Colors.white,
+                                          ),
                                         ),
                                       ),
                                       Container(
@@ -353,9 +358,10 @@ class _HomeScreenState extends State<HomeScreen>
                                               BorderRadius.circular(13),
                                         ),
                                         child: Padding(
-                                          padding: EdgeInsets.all(width * 0.03),
-                                          child: SvgPicture.asset(
-                                            'assets/images/uparrow.svg',
+                                          padding: EdgeInsets.all(width * 0.02),
+                                          child: Icon(
+                                            Icons.history,
+                                            color: Colors.white,
                                           ),
                                         ),
                                       ),
@@ -517,7 +523,7 @@ class _HomeScreenState extends State<HomeScreen>
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
-                            image: AssetImage('assets/images/offerImage.jpg'),
+                            image: AssetImage(offerImages[itemIndex]),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -605,8 +611,8 @@ class _HomeScreenState extends State<HomeScreen>
                                       ),
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: Image.network(
-                                          'https://cdn-icons-png.flaticon.com/512/2927/2927347.png',
+                                        child: Image.asset(
+                                          'assets/images/rest.png',
                                         ),
                                       ),
                                     ),
@@ -668,8 +674,8 @@ class _HomeScreenState extends State<HomeScreen>
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Image.network(
-                                        'https://cdn-icons-png.flaticon.com/512/2927/2927347.png',
+                                      child: Image.asset(
+                                        'assets/images/cart.png',
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -732,14 +738,14 @@ class _HomeScreenState extends State<HomeScreen>
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Image.network(
-                                        'https://cdn-icons-png.flaticon.com/512/2927/2927347.png',
+                                      child: Image.asset(
+                                        'assets/images/delivery.png',
                                       ),
                                     ),
                                   ),
                                   SizedBox(height: height * 0.01),
                                   Text(
-                                    'Restaurants',
+                                    'Food Delivery',
                                     style: TextStyle(
                                       color: Color(0xffF7CA49),
                                       fontSize: 16,
@@ -770,8 +776,15 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
                 SizedBox(height: height * 0.015),
                 //!Nearby Merchants tile
-                NearbyMerchantsTile(width: width, height: height),
-                NearbyMerchantsTile(width: width, height: height),
+                NearbyMerchantsTile(
+                    width: width,
+                    height: height,
+                    imageUrl: 'assets/images/uberEats.jpg'),
+                NearbyMerchantsTile(
+                  width: width,
+                  height: height,
+                  imageUrl: 'assets/images/foodpanda.jpeg',
+                ),
                 SizedBox(height: height * 0.015),
               ],
             ),
@@ -787,10 +800,12 @@ class NearbyMerchantsTile extends StatelessWidget {
     Key? key,
     required this.width,
     required this.height,
+    required this.imageUrl,
   }) : super(key: key);
 
   final double width;
   final double height;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -812,7 +827,7 @@ class NearbyMerchantsTile extends StatelessWidget {
                 color: Colors.red,
                 borderRadius: BorderRadius.circular(20),
                 image: DecorationImage(
-                  image: AssetImage('assets/images/uberEats.jpg'),
+                  image: AssetImage(imageUrl),
                   fit: BoxFit.cover,
                 ),
               ),

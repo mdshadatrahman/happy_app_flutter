@@ -17,10 +17,10 @@ List<String> points = [
   '10',
 ];
 List<String> pictureUrl = [
-  'assets/images/shawrma.jpeg',
-  'assets/images/trump.png',
-  'assets/images/trump2.png',
-  'assets/images/coffee.jpeg',
+  'assets/images/page1.jpeg',
+  'assets/images/page2.jpeg',
+  'assets/images/youtube.png',
+  'assets/images/youtube2.jpeg',
 ];
 
 class TasksPage extends StatefulWidget {

@@ -19,6 +19,42 @@ class _buy_couponsState extends State<buy_coupons> {
     "Food Delivery",
     "Utility",
   ];
+  List<String> pictureUrl = [
+    'assets/images/trump2.png',
+    'assets/images/coffee.jpeg',
+    'assets/images/euphoria.png',
+    'assets/images/shawrma.jpeg',
+    'assets/images/trump.png',
+  ];
+  List<String> pictureUrl2 = [
+    'assets/images/shawrma.jpeg',
+    'assets/images/trump.png',
+    'assets/images/shawrma.jpeg',
+    'assets/images/trump2.png',
+    'assets/images/coffee.jpeg',
+    'assets/images/euphoria.png',
+    'assets/images/trump2.png',
+    'assets/images/coffee.jpeg',
+    'assets/images/trump2.png',
+    'assets/images/coffee.jpeg',
+  ];
+  List<String> offerImages = [
+    'assets/images/offer1.jpeg',
+    'assets/images/offer.jpeg',
+    'assets/images/offer3.jpeg',
+    'assets/images/offer2.jpeg',
+    'assets/images/offer4.png',
+  ];
+  List<String> categories = [
+    'assets/images/restaurants.jpeg',
+    'assets/images/groceries.jpg',
+    'assets/images/food_delevery.jpg',
+    'assets/images/utility.png',
+    'assets/images/restaurants.jpeg',
+    'assets/images/groceries.jpg',
+    'assets/images/food_delevery.jpg',
+    'assets/images/utility.png',
+  ];
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -66,8 +102,7 @@ class _buy_couponsState extends State<buy_coupons> {
                           CircleAvatar(
                             radius: 25,
                             backgroundColor: Colors.transparent,
-                            backgroundImage:
-                                AssetImage('assets/images/food.png'),
+                            backgroundImage: AssetImage(categories[index]),
                           ),
                           Text(names[index])
                         ],
@@ -99,7 +134,7 @@ class _buy_couponsState extends State<buy_coupons> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
-                      image: AssetImage('assets/images/offer.jpeg'),
+                      image: AssetImage(offerImages[itemIndex]),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -158,8 +193,7 @@ class _buy_couponsState extends State<buy_coupons> {
                                         topLeft: Radius.circular(10),
                                         topRight: Radius.circular(10)),
                                     image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/images/offer.jpeg'),
+                                        image: AssetImage(pictureUrl[index]),
                                         fit: BoxFit.cover)),
                               ),
                               Padding(
@@ -259,8 +293,7 @@ class _buy_couponsState extends State<buy_coupons> {
                                         topLeft: Radius.circular(10),
                                         topRight: Radius.circular(10)),
                                     image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/images/offer.jpeg'),
+                                        image: AssetImage(pictureUrl2[index]),
                                         fit: BoxFit.cover)),
                               ),
                               Padding(

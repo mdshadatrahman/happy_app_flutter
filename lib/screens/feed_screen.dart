@@ -1,3 +1,4 @@
+import 'package:codecell_happy_app/screens/profile.dart';
 import 'package:codecell_happy_app/utils/Colors.dart';
 import 'package:codecell_happy_app/utils/drawer.dart';
 import 'package:flutter/material.dart';
@@ -47,12 +48,17 @@ class _FeedScreenState extends State<FeedScreen>
           ),
           actions: [
             Icon(Icons.search),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CircleAvatar(
-                radius: 20,
-                backgroundImage: NetworkImage(
-                  'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDV8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+            GestureDetector(
+              onTap: () {
+                Get.to(() => ProfileScreen());
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CircleAvatar(
+                  radius: 20,
+                  backgroundImage: NetworkImage(
+                    'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDV8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+                  ),
                 ),
               ),
             )

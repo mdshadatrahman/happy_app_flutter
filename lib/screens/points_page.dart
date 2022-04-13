@@ -19,6 +19,12 @@ class _PointsPageState extends State<PointsPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final GlobalKey<ScaffoldState> _key = GlobalKey();
+  List<String> pictureUrl = [
+    'assets/images/page1.jpeg',
+    'assets/images/page2.jpeg',
+    'assets/images/youtube.png',
+    'assets/images/youtube2.jpeg',
+  ];
 
   @override
   void initState() {
@@ -168,7 +174,7 @@ class _PointsPageState extends State<PointsPage>
                                                     BorderRadius.circular(10),
                                                 image: DecorationImage(
                                                   image: AssetImage(
-                                                    'assets/images/lereve.jpg',
+                                                    pictureUrl[index],
                                                   ),
                                                 ),
                                               ),
@@ -277,7 +283,7 @@ class _PointsPageState extends State<PointsPage>
                       //Stamps
                       ListView.builder(
                           shrinkWrap: true,
-                          itemCount: 10,
+                          itemCount: 4,
                           itemBuilder: (_, index) {
                             return Column(
                               children: [
@@ -306,7 +312,7 @@ class _PointsPageState extends State<PointsPage>
                                                       BorderRadius.circular(10),
                                                   image: DecorationImage(
                                                     image: AssetImage(
-                                                        'assets/images/lereve.jpg'),
+                                                        pictureUrl[index]),
                                                   ),
                                                 ),
                                               ),
