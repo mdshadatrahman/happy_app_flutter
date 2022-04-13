@@ -1,9 +1,13 @@
-import 'package:codecell_happy_app/utils/Colors.dart';
+import 'package:buttons_tabbar/buttons_tabbar.dart';
+import 'package:codecell_happy_app/screens/tasks_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
+
+import '../utils/Colors.dart';
+import '../utils/drawer.dart';
+import '../widgets/custom_bottom_navigation.dart';
 
 class PointsPage extends StatefulWidget {
   const PointsPage({Key? key}) : super(key: key);
@@ -12,191 +16,143 @@ class PointsPage extends StatefulWidget {
   State<PointsPage> createState() => _PointsPageState();
 }
 
-class _PointsPageState extends State<PointsPage> {
+class _PointsPageState extends State<PointsPage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(vsync: this, length: 2);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Color(0xffFAF9F9),
-        body: Column(
-          children: [
-            //!TODO: need to add custom design in appbar
-            Container(
-              height: AppBar().preferredSize.height,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xff318AC4),
-                    Color(0xff4CA37C),
-                  ],
-                ),
-              ),
-
-              //Appbar Icons
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: width / 15),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.sort,
-                      color: AppColors.white,
-                    ),
-                    SizedBox(width: width * 0.24),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Total Points',
-                          style: TextStyle(
-                            color: AppColors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Text(
-                          '100',
-                          style: TextStyle(
-                            color: AppColors.white,
-                            fontSize: 24,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(width: width * 0.1),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.search,
-                          color: AppColors.white,
-                          size: 35,
-                        ),
-                        CircleAvatar(
-                          backgroundImage: NetworkImage(
-                            'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CustomBottomNavigationBar(),
+          ),
+        );
+        return true;
+      },
+      child: SafeArea(
+        child: Scaffold(
+          key: _key,
+          appBar: NewGradientAppBar(
+            title: Text(
+              'Points',
+              style: TextStyle(
+                color: AppColors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
               ),
             ),
-
-            //Points, Stamps
-
-            SizedBox(height: height * 0.03),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: width / 15,
-              ),
-              child: Stack(
-                children: [
-                  Container(
-                    width: width * 1,
-                    height: height * 0.09,
+            centerTitle: true,
+            gradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xff318AC4),
+                Color(0xff4CA37C),
+              ],
+            ),
+          ),
+          backgroundColor: Color(0xffFAF9F9),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: height * 0.02),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: width / 15),
+                  child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
                       color: Colors.white,
-                      boxShadow: [
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: const [
                         BoxShadow(
                           color: Color.fromARGB(255, 213, 214, 218),
                           spreadRadius: 0,
-                          blurRadius: 10,
-                          offset: Offset(5, 5),
+                          blurRadius: 5,
+                          offset: Offset(3, 5),
                         ),
                       ],
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: width / 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Points',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xffE37A29),
-                            ),
-                          ),
-                          Text(
-                            'Stamps',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xff1E130B),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  //Half bar
-                  Padding(
-                    padding: EdgeInsets.only(top: height * 0.075),
-                    child: Container(
-                      height: height * 0.015,
-                      width: width * 0.45,
-                      decoration: BoxDecoration(
-                        color: Color(0xff3756CF),
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(50),
-                          topRight: Radius.circular(50),
-                          bottomRight: Radius.circular(50),
-                          topLeft: Radius.circular(6),
+                    child: TabBar(
+                      controller: _tabController,
+                      isScrollable: true,
+                      indicator: const UnderlineTabIndicator(
+                        borderSide: BorderSide(
+                          width: 10.0,
+                          color: Color(0xff3756CF),
                         ),
                       ),
+                      tabs: [
+                        SizedBox(
+                          height: height * 0.07,
+                          width: width * 0.4,
+                          child: const Center(
+                            child: Text(
+                              'Points',
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Color(0xffE37A29),
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: height * 0.07,
+                          width: width * 0.4,
+                          child: const Center(
+                            child: Text(
+                              'Stamps',
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Color(0xff1E130B),
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
+                ),
 
-            //Card Start
-            //!Scroll is not working
-            SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  EarnPointsWidget(width: width, height: height),
-                  EarnPointsWidget(width: width, height: height),
-                  EarnPointsWidget(width: width, height: height),
-                  EarnPointsWidget(width: width, height: height),
-                  EarnPointsWidget(width: width, height: height),
-                ],
-              ),
+                //Main Body
+                SizedBox(
+                  height: height,
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: [
+                      Column(
+                        children: [
+                          EarnPointsWidget(width: width, height: height),
+                          EarnPointsWidget(width: width, height: height),
+                          EarnPointsWidget(width: width, height: height),
+                          EarnPointsWidget(width: width, height: height),
+                        ],
+                      ),
+                      Container(),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            //Card End
-          ],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/images/Vector.svg'),
-              label: 'Overview',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/images/calendar.svg'),
-              label: 'This Month',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/images/ticket.svg'),
-              label: 'Offers',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/images/settings.svg'),
-              label: 'Settings',
-            ),
-          ],
-          currentIndex: 1,
-          selectedItemColor: Color(0xff6347EB),
-          // onTap: _onItemTapped,
+          ),
         ),
       ),
     );
@@ -327,12 +283,10 @@ class CustomDialog1 extends StatelessWidget {
                     ),
                     child: Text(
                       'Redeem later',
-                      style: GoogleFonts.inter(
-                        textStyle: TextStyle(
-                          color: Color(0xff211242),
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600,
-                        ),
+                      style: TextStyle(
+                        color: Color(0xff211242),
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
@@ -354,12 +308,10 @@ class CustomDialog1 extends StatelessWidget {
                     ),
                     child: Text(
                       'Redeem now',
-                      style: GoogleFonts.inter(
-                        textStyle: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600,
-                        ),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),

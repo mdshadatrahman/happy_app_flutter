@@ -1,4 +1,5 @@
 import 'package:codecell_happy_app/screens/homepage.dart';
+import 'package:codecell_happy_app/widgets/custom_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,18 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LaunchPage(),
-    );
-  }
-}
-
-class LaunchPage extends StatelessWidget {
-  const LaunchPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: HomeScreen(),
+      home: CustomBottomNavigationBar(),
     );
   }
 }

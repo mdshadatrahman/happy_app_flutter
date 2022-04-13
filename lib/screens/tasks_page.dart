@@ -1,8 +1,10 @@
+import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:codecell_happy_app/utils/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 
 class TasksPage extends StatefulWidget {
   const TasksPage({Key? key}) : super(key: key);
@@ -11,178 +13,334 @@ class TasksPage extends StatefulWidget {
   State<TasksPage> createState() => _TasksPageState();
 }
 
-class _TasksPageState extends State<TasksPage> {
+class _TasksPageState extends State<TasksPage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(vsync: this, length: 2);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xffFAF9F9),
-        body: Column(
-          children: [
-            //!TODO: need to add custom design in appbar
-            Container(
-              height: AppBar().preferredSize.height,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xff318AC4),
-                    Color(0xff4CA37C),
-                  ],
-                ),
-              ),
-
-              //Appbar Icons
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: width / 15),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.sort,
-                      color: AppColors.white,
-                    ),
-                    SizedBox(width: width * 0.32),
-                    Text(
-                      'Task',
-                      style: TextStyle(
-                        color: AppColors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    SizedBox(width: width * 0.17),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.search,
-                          color: AppColors.white,
-                          size: 35,
-                        ),
-                        CircleAvatar(
-                          backgroundImage: NetworkImage(
-                            'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+        appBar: NewGradientAppBar(
+          title: Text(
+            'Task',
+            style: TextStyle(
+              color: AppColors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          centerTitle: true,
+          actions: [
+            Icon(
+              Icons.search,
+              color: AppColors.white,
+              size: 35,
+            ),
+            const CircleAvatar(
+              backgroundImage: NetworkImage(
+                'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80',
               ),
             ),
-
-            //Points, Stamps
-
-            SizedBox(height: height * 0.03),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: width / 15,
-              ),
-              child: Stack(
-                children: [
-                  Container(
-                    width: width * 1,
-                    height: height * 0.09,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromARGB(255, 213, 214, 218),
-                          spreadRadius: 0,
-                          blurRadius: 10,
-                          offset: Offset(5, 5),
-                        ),
-                      ],
+            SizedBox(width: width / 15)
+          ],
+          gradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xff318AC4),
+              Color(0xff4CA37C),
+            ],
+          ),
+        ),
+        backgroundColor: Color(0xffFAF9F9),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: height * 0.02),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: width / 15),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color.fromARGB(255, 213, 214, 218),
+                        spreadRadius: 0,
+                        blurRadius: 5,
+                        offset: Offset(3, 5),
+                      ),
+                    ],
+                  ),
+                  child: TabBar(
+                    controller: _tabController,
+                    isScrollable: true,
+                    indicator: const UnderlineTabIndicator(
+                      borderSide: BorderSide(
+                        width: 10.0,
+                        color: Color(0xff3756CF),
+                      ),
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: width / 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
+                    tabs: [
+                      SizedBox(
+                        height: height * 0.07,
+                        width: width * 0.4,
+                        child: const Center(
+                          child: Text(
                             'Points',
                             style: TextStyle(
                               fontSize: 18,
-                              fontWeight: FontWeight.w500,
                               color: Color(0xffE37A29),
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                          Text(
+                        ),
+                      ),
+                      SizedBox(
+                        height: height * 0.07,
+                        width: width * 0.4,
+                        child: const Center(
+                          child: Text(
                             'Stamps',
                             style: TextStyle(
                               fontSize: 18,
-                              fontWeight: FontWeight.w500,
                               color: Color(0xff1E130B),
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  //Half bar
-                  Padding(
-                    padding: EdgeInsets.only(top: height * 0.075),
-                    child: Container(
-                      height: height * 0.015,
-                      width: width * 0.45,
-                      decoration: BoxDecoration(
-                        color: Color(0xff3756CF),
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(50),
-                          topRight: Radius.circular(50),
-                          bottomRight: Radius.circular(50),
-                          topLeft: Radius.circular(6),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
 
-            //Card Start
-            //!Scroll is not working
-            SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  EarnPointsWidget(width: width, height: height),
-                  EarnPointsWidget(width: width, height: height),
-                  EarnPointsWidget(width: width, height: height),
-                  EarnPointsWidget(width: width, height: height),
-                  EarnPointsWidget(width: width, height: height),
-                ],
+              //Main Body
+              SizedBox(
+                height: height,
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    Column(
+                      children: [
+                        SizedBox(height: height * 0.04),
+
+                        //Facebook
+                        Container(
+                          height: height * 0.1,
+                          width: width * 0.8,
+                          decoration: BoxDecoration(
+                            color: const Color(0xffEFF1FF),
+                            borderRadius: BorderRadius.circular(23),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Image.asset(
+                                'assets/images/fb.png',
+                              ),
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    height: height * 0.03,
+                                  ),
+                                  const Text(
+                                    'Review this item for',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  Row(
+                                    children: const [
+                                      Text(
+                                        '10 ',
+                                        style: TextStyle(
+                                          color: AppColors.orange,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                      Text(
+                                        'points !',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  top: height * 0.05,
+                                  left: width * 0.07,
+                                ),
+                                child: Container(
+                                  color: AppColors.orange,
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: width * 0.01,
+                                      vertical: height * 0.002,
+                                    ),
+                                    child: const Text(
+                                      'Ongoing',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+
+                        //Twitter
+                        SizedBox(height: height * 0.03),
+                        Container(
+                          height: height * 0.1,
+                          width: width * 0.8,
+                          decoration: BoxDecoration(
+                            color: const Color(0xffEFF1FF),
+                            borderRadius: BorderRadius.circular(23),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Image.asset(
+                                'assets/images/twitter.png',
+                              ),
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    height: height * 0.03,
+                                  ),
+                                  const Text(
+                                    'Review this item for',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  Row(
+                                    children: const [
+                                      Text(
+                                        '10 ',
+                                        style: TextStyle(
+                                          color: AppColors.orange,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                      Text(
+                                        'points !',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  top: height * 0.05,
+                                  left: width * 0.07,
+                                ),
+                                child: Container(
+                                  width: width * 0.15,
+                                  color: AppColors.red,
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: width * 0.01,
+                                      vertical: height * 0.002,
+                                    ),
+                                    child: const Text(
+                                      'Draft',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        //Instagram
+                        SizedBox(height: height * 0.03),
+                        Container(
+                          height: height * 0.1,
+                          width: width * 0.8,
+                          decoration: BoxDecoration(
+                            color: const Color(0xffEFF1FF),
+                            borderRadius: BorderRadius.circular(23),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Image.asset(
+                                'assets/images/insta.png',
+                              ),
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    height: height * 0.03,
+                                  ),
+                                  const Text(
+                                    'Review this item for',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        '10 ',
+                                        style: TextStyle(
+                                          color: AppColors.orange,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                      const Text(
+                                        'points !',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(),
+                  ],
+                ),
               ),
-            ),
-            //Card End
-          ],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/images/Vector.svg'),
-              label: 'Overview',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/images/calendar.svg'),
-              label: 'This Month',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/images/ticket.svg'),
-              label: 'Offers',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/images/settings.svg'),
-              label: 'Settings',
-            ),
-          ],
-          currentIndex: 1,
-          selectedItemColor: Color(0xff6347EB),
-          // onTap: _onItemTapped,
+            ],
+          ),
         ),
       ),
     );
