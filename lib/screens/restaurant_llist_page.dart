@@ -28,6 +28,17 @@ List<String> restaurantsAddress = [
   'Dhanmondi',
   'Dhanmondi',
 ];
+List<String> pictureUrl = [
+  'assets/images/trump2.png',
+  'assets/images/coffee.jpeg',
+  'assets/images/euphoria.png',
+  'assets/images/shawrma.jpeg',
+  'assets/images/trump.png',
+  'assets/images/trump2.png',
+  'assets/images/trump2.png',
+  'assets/images/coffee.jpeg',
+  'assets/images/shawrma.jpeg',
+];
 
 class RestaurantsList extends StatefulWidget {
   const RestaurantsList({Key? key}) : super(key: key);
@@ -91,7 +102,7 @@ class _RestaurantsListState extends State<RestaurantsList> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 image: DecorationImage(
-                                  image: AssetImage('assets/images/food1.jpg'),
+                                  image: AssetImage(pictureUrl[index]),
                                 ),
                               ),
                             ),

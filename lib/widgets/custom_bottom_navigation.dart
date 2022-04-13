@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:codecell_happy_app/screens/feed_screen.dart';
+import 'package:codecell_happy_app/screens/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -366,7 +367,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                     minWidth: 20,
                     onPressed: () {
                       setState(() {
-                        currentScreen = const PointsPage();
+                        currentScreen = const NotificationScreen();
                         current_tab = 2;
                       });
                     },
@@ -377,7 +378,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                             ? SvgPicture.asset("assets/images/points.svg")
                             : SvgPicture.asset("assets/images/points.svg"),
                         Text(
-                          "Points",
+                          "Notifications",
                           style: TextStyle(
                             fontSize: 12,
                             color: current_tab == 2

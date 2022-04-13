@@ -16,6 +16,12 @@ List<String> points = [
   '15',
   '10',
 ];
+List<String> pictureUrl = [
+  'assets/images/shawrma.jpeg',
+  'assets/images/trump.png',
+  'assets/images/trump2.png',
+  'assets/images/coffee.jpeg',
+];
 
 class TasksPage extends StatefulWidget {
   const TasksPage({Key? key}) : super(key: key);
@@ -179,7 +185,7 @@ class _TasksPageState extends State<TasksPage>
                                                   BorderRadius.circular(10),
                                               image: DecorationImage(
                                                 image: AssetImage(
-                                                  'assets/images/lereve.jpg',
+                                                  pictureUrl[index],
                                                 ),
                                               ),
                                             ),
@@ -294,7 +300,7 @@ class _TasksPageState extends State<TasksPage>
                                                   BorderRadius.circular(10),
                                               image: DecorationImage(
                                                 image: AssetImage(
-                                                    'assets/images/lereve.jpg'),
+                                                    pictureUrl[index]),
                                               ),
                                             ),
                                           ),

@@ -8,6 +8,17 @@ class get_points extends StatefulWidget {
 }
 
 class _get_pointsState extends State<get_points> {
+  List<String> pictureUrl = [
+    'assets/images/trump2.png',
+    'assets/images/coffee.jpeg',
+    'assets/images/euphoria.png',
+    'assets/images/shawrma.jpeg',
+    'assets/images/trump.png',
+    'assets/images/trump2.png',
+    'assets/images/trump2.png',
+    'assets/images/coffee.jpeg',
+    'assets/images/shawrma.jpeg',
+  ];
   var selected = false;
   @override
   Widget build(BuildContext context) {
@@ -293,7 +304,7 @@ class _get_pointsState extends State<get_points> {
               height: height / 1.2,
               child: ListView.builder(
                   shrinkWrap: true,
-                  itemCount: 10,
+                  itemCount: 9,
                   itemBuilder: (_, index) {
                     return Column(
                       children: [
@@ -317,8 +328,8 @@ class _get_pointsState extends State<get_points> {
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           image: DecorationImage(
-                                            image: AssetImage(
-                                                'assets/images/lereve.jpg'),
+                                            image:
+                                                AssetImage(pictureUrl[index]),
                                           ),
                                         ),
                                       ),
