@@ -18,6 +18,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../widgets/custom_bottom_navigation.dart';
+import 'buy_coupon.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -29,6 +30,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
+  var selected = false;
 
   TabController? _controller;
   @override
@@ -425,7 +427,7 @@ class _HomeScreenState extends State<HomeScreen>
                           GestureDetector(
                             onTap: () {
                               Get.to(
-                                () => ReceivedCoupons(),
+                                () => buy_coupons(),
                               );
                             },
                             child: Container(
@@ -465,7 +467,7 @@ class _HomeScreenState extends State<HomeScreen>
                     ],
                   ),
                 ),
-                SizedBox(height: height * 0.04),
+                SizedBox(height: height * 0.035),
                 //Our offers
                 Padding(
                   padding: EdgeInsets.only(
@@ -481,45 +483,50 @@ class _HomeScreenState extends State<HomeScreen>
                     ),
                   ),
                 ),
-                SizedBox(height: height * 0.035),
+                SizedBox(height: height * 0.02),
 
                 //Discount field
-                Container(
-                  height: MediaQuery.of(context).size.height / 7,
-                  child: CarouselSlider.builder(
-                    options: CarouselOptions(
-                      scrollDirection: Axis.horizontal,
-                      scrollPhysics: AlwaysScrollableScrollPhysics(),
-                      height: 200,
-                      autoPlay: true,
-                      reverse: true,
-                      enlargeCenterPage: true,
-                      viewportFraction: 0.9,
-                    ),
-                    itemCount: 5,
-                    itemBuilder: (BuildContext context, int itemIndex,
-                            int pageViewIndex) =>
-                        Container(
-                      height: height / 5,
-                      width: width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/offerImage.jpg'),
-                          fit: BoxFit.cover,
-                        ),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => details());
+                  },
+                  child: Container(
+                    height: MediaQuery.of(context).size.height / 7,
+                    child: CarouselSlider.builder(
+                      options: CarouselOptions(
+                        scrollDirection: Axis.horizontal,
+                        scrollPhysics: AlwaysScrollableScrollPhysics(),
+                        height: 200,
+                        autoPlay: true,
+                        reverse: true,
+                        enlargeCenterPage: true,
+                        viewportFraction: 0.9,
                       ),
-                      // child: InkWell(
-                      //
-                      //     onTap: ()async{
-                      //       // var url=snapshot.data[itemIndex]['links'];
-                      //       // if (await canLaunch(url))
-                      //       //   await launch(url);
-                      //       // else
-                      //       //   // can't launch url, there is some error
-                      //       //   throw "Could not launch $url";
-                      //     },
-                      //     child:Image.asset('assets/images/b.jpg',width: width,))
+                      itemCount: 5,
+                      itemBuilder: (BuildContext context, int itemIndex,
+                              int pageViewIndex) =>
+                          Container(
+                        height: height / 5,
+                        width: width,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/offerImage.jpg'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        // child: InkWell(
+                        //
+                        //     onTap: ()async{
+                        //       // var url=snapshot.data[itemIndex]['links'];
+                        //       // if (await canLaunch(url))
+                        //       //   await launch(url);
+                        //       // else
+                        //       //   // can't launch url, there is some error
+                        //       //   throw "Could not launch $url";
+                        //     },
+                        //     child:Image.asset('assets/images/b.jpg',width: width,))
+                      ),
                     ),
                   ),
                 ),
@@ -559,11 +566,11 @@ class _HomeScreenState extends State<HomeScreen>
                                 boxShadow: [
                                   BoxShadow(
                                     color: Color.fromARGB(255, 146, 146, 146),
-                                    blurRadius: 5.0,
+                                    blurRadius: 1.0,
                                     spreadRadius: 0.0,
                                     offset: Offset(
-                                      0.0,
-                                      0.0,
+                                      1.0,
+                                      1.0,
                                     ), // shadow direction: bottom right
                                   )
                                 ],
@@ -623,7 +630,7 @@ class _HomeScreenState extends State<HomeScreen>
                               boxShadow: [
                                 BoxShadow(
                                   color: Color.fromARGB(255, 146, 146, 146),
-                                  blurRadius: 5.0,
+                                  blurRadius: 1.0,
                                   spreadRadius: 0.0,
                                   offset: Offset(
                                     1.0,
@@ -686,7 +693,7 @@ class _HomeScreenState extends State<HomeScreen>
                               boxShadow: [
                                 BoxShadow(
                                   color: Color.fromARGB(255, 146, 146, 146),
-                                  blurRadius: 5.0,
+                                  blurRadius: 1.0,
                                   spreadRadius: 0.0,
                                   offset: Offset(
                                     1.0,

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:codecell_happy_app/screens/feed_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -16,12 +17,12 @@ class CustomBottomNavigationBar extends StatefulWidget {
 }
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-  final List<Widget> screens = [
-    const HomeScreen(),
-    const PointsPage(),
-    const OurOfferPage(),
-    const SettingsPage(),
-  ];
+  // final List<Widget> screens = [
+  //   const HomeScreen(),
+  //   const PointsPage(),
+  //   const OurOfferPage(),
+  //   const SettingsPage(),
+  // ];
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = const HomeScreen();
   int current_tab = 0;
@@ -336,7 +337,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                     minWidth: 20,
                     onPressed: () {
                       setState(() {
-                        currentScreen = const PointsPage();
+                        currentScreen = const FeedScreen();
                         current_tab = 1;
                       });
                     },
@@ -345,10 +346,10 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                       children: [
                         current_tab == 1
                             //!Need to change the icon
-                            ? SvgPicture.asset("assets/images/points.svg")
-                            : SvgPicture.asset("assets/images/points.svg"),
+                            ? SvgPicture.asset("assets/images/icon6.svg")
+                            : SvgPicture.asset("assets/images/icon4.svg"),
                         Text(
-                          "Points",
+                          "Feed",
                           style: TextStyle(
                             fontSize: 12,
                             color: current_tab == 1
@@ -365,7 +366,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                     minWidth: 20,
                     onPressed: () {
                       setState(() {
-                        currentScreen = const OurOfferPage();
+                        currentScreen = const PointsPage();
                         current_tab = 2;
                       });
                     },
@@ -373,10 +374,10 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         current_tab == 2
-                            ? SvgPicture.asset("assets/images/icon6.svg")
-                            : SvgPicture.asset("assets/images/icon4.svg"),
+                            ? SvgPicture.asset("assets/images/points.svg")
+                            : SvgPicture.asset("assets/images/points.svg"),
                         Text(
-                          "Offers",
+                          "Points",
                           style: TextStyle(
                             fontSize: 12,
                             color: current_tab == 2

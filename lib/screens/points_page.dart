@@ -6,7 +6,6 @@ import 'package:lottie/lottie.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 
 import '../utils/Colors.dart';
-import '../utils/drawer.dart';
 import '../widgets/custom_bottom_navigation.dart';
 
 class PointsPage extends StatefulWidget {
@@ -37,6 +36,7 @@ class _PointsPageState extends State<PointsPage>
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    var selected = false;
     return WillPopScope(
       onWillPop: () async {
         Navigator.push(
@@ -138,19 +138,481 @@ class _PointsPageState extends State<PointsPage>
                   child: TabBarView(
                     controller: _tabController,
                     children: [
-                      Column(
-                        children: [
-                          EarnPointsWidget(width: width, height: height),
-                          EarnPointsWidget(width: width, height: height),
-                          EarnPointsWidget(width: width, height: height),
-                          EarnPointsWidget(width: width, height: height),
-                        ],
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: 4,
+                        itemBuilder: (_, index) {
+                          return Column(
+                            children: [
+                              SizedBox(
+                                height: height * 0.10,
+                                width: width,
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: width * 0.05),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsets.all(height * 0.01),
+                                            child: Container(
+                                              height: width * 0.150,
+                                              width: width * 0.15,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                image: DecorationImage(
+                                                  image: AssetImage(
+                                                    'assets/images/lereve.jpg',
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: height * 0.025),
+                                                //TODO: reduce weight
+                                                child: Text(
+                                                  'Like this page for',
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    "10",
+                                                    style: const TextStyle(
+                                                      fontSize: 16,
+                                                      color: AppColors.orange,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    " points",
+                                                    style: const TextStyle(
+                                                      fontSize: 14,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          Container(
+                                            height: 1,
+                                            color: Colors.grey,
+                                          ),
+                                        ],
+                                      ),
+
+                                      //Stamps
+                                      InkWell(
+                                        onTap: () {
+                                          // Get.to(() => details());
+                                        },
+                                        child: index % 2 == 0
+                                            ? Container(
+                                                decoration: BoxDecoration(
+                                                  color: AppColors.orange,
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                ),
+                                                height: height * 0.025,
+                                                width: width * 0.16,
+                                                child: Center(
+                                                  child: Text(
+                                                    'Ongoing',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            : Container(
+                                                decoration: BoxDecoration(
+                                                  color: AppColors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                ),
+                                                height: height * 0.025,
+                                                width: width * 0.12,
+                                                child: Center(
+                                                  child: Text(
+                                                    'Draft',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Divider(
+                                color: Colors.black54,
+                              )
+                            ],
+                          );
+                        },
                       ),
-                      Container(),
+
+                      //Stamps
+                      ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: 10,
+                          itemBuilder: (_, index) {
+                            return Column(
+                              children: [
+                                SizedBox(
+                                  height: height * 0.10,
+                                  width: width,
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.only(right: width * 0.05),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  EdgeInsets.all(height * 0.01),
+                                              child: Container(
+                                                height: width * 0.150,
+                                                width: width * 0.15,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  image: DecorationImage(
+                                                    image: AssetImage(
+                                                        'assets/images/lereve.jpg'),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                    top: height * 0.025,
+                                                  ),
+                                                  child: Text(
+                                                    'Subscribe the channel for',
+                                                    style: const TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      "20",
+                                                      style: const TextStyle(
+                                                        fontSize: 16,
+                                                        color: AppColors.orange,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      " points",
+                                                      style: const TextStyle(
+                                                        fontSize: 14,
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                            Container(
+                                              height: 1,
+                                              color: Colors.grey,
+                                            ),
+                                          ],
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            // Get.to(() => details());
+                                          },
+                                          child: index % 2 == 0
+                                              ? Container(
+                                                  decoration: BoxDecoration(
+                                                    color: AppColors.orange,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  ),
+                                                  height: height * 0.025,
+                                                  width: width * 0.16,
+                                                  child: Center(
+                                                    child: Text(
+                                                      'Ongoing',
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )
+                                              : Container(
+                                                  decoration: BoxDecoration(
+                                                    color: AppColors.red,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  ),
+                                                  height: height * 0.025,
+                                                  width: width * 0.12,
+                                                  child: Center(
+                                                    child: Text(
+                                                      'Draft',
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Divider(
+                                  color: Colors.black54,
+                                )
+                              ],
+                            );
+                          }),
                     ],
                   ),
                 ),
               ],
+            ),
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: InkWell(
+            onTap: () {
+              showModalBottomSheet(
+                  backgroundColor: Colors.transparent,
+                  isScrollControlled: true,
+                  elevation: 10,
+                  context: context,
+                  builder: (context) {
+                    return StatefulBuilder(builder: (context, setState) {
+                      return SingleChildScrollView(
+                        child: Container(
+                            decoration: new BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: new BorderRadius.only(
+                                topLeft: const Radius.circular(30.0),
+                                topRight: const Radius.circular(30.0),
+                              ),
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        "Filter",
+                                        style: TextStyle(color: Colors.grey),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.restaurant,
+                                            color: Colors.teal,
+                                          ),
+                                          Text(
+                                            " Restaurant",
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Checkbox(
+                                        value: selected,
+                                        onChanged: (v) {
+                                          setState(() {
+                                            selected = v!;
+                                          });
+                                        })
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.restaurant,
+                                            color: Colors.teal,
+                                          ),
+                                          Text(
+                                            " Grocieries",
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Checkbox(
+                                        value: selected,
+                                        onChanged: (v) {
+                                          setState(() {
+                                            selected = v!;
+                                          });
+                                        })
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.restaurant,
+                                            color: Colors.teal,
+                                          ),
+                                          Text(
+                                            " Food Delivery",
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Checkbox(
+                                        value: selected,
+                                        onChanged: (v) {
+                                          setState(() {
+                                            selected = v!;
+                                          });
+                                        })
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.restaurant,
+                                            color: Colors.teal,
+                                          ),
+                                          Text(
+                                            " Online Shop",
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Checkbox(
+                                        value: selected,
+                                        onChanged: (v) {
+                                          setState(() {
+                                            selected = v!;
+                                          });
+                                        })
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Container(
+                                      width: width,
+                                      height: height / 25,
+                                      decoration: BoxDecoration(
+                                        color: Colors.teal,
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: Center(
+                                          child: Text(
+                                        'Apply Filter',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      )),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            )),
+                      );
+                    });
+                  });
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.teal, borderRadius: BorderRadius.circular(10)),
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.filter_list,
+                      color: Colors.white,
+                    ),
+                    Text(
+                      '  Filter  ',
+                      style: TextStyle(color: Colors.white),
+                    )
+                  ],
+                ),
+              ),
             ),
           ),
         ),

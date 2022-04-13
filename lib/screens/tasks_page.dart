@@ -1,10 +1,21 @@
-import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:codecell_happy_app/utils/Colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
+
+List<String> tasks = [
+  'Like this page for',
+  'Comment on the page',
+  'Share this page for',
+  'Subscribe the channel for'
+];
+List<String> points = [
+  '10',
+  '20',
+  '15',
+  '10',
+];
 
 class TasksPage extends StatefulWidget {
   const TasksPage({Key? key}) : super(key: key);
@@ -17,6 +28,7 @@ class _TasksPageState extends State<TasksPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final GlobalKey<ScaffoldState> _key = GlobalKey();
+  var selected = false;
 
   @override
   void initState() {
@@ -137,209 +149,430 @@ class _TasksPageState extends State<TasksPage>
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    Column(
-                      children: [
-                        SizedBox(height: height * 0.04),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: 4,
+                      itemBuilder: (_, index) {
+                        return Column(
+                          children: [
+                            SizedBox(
+                              height: height * 0.10,
+                              width: width,
+                              child: Padding(
+                                padding: EdgeInsets.only(right: width * 0.05),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.all(height * 0.01),
+                                          child: Container(
+                                            height: width * 0.150,
+                                            width: width * 0.15,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              image: DecorationImage(
+                                                image: AssetImage(
+                                                  'assets/images/lereve.jpg',
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: height * 0.025),
+                                              child: Text(
+                                                tasks[index],
+                                                style: const TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  points[index],
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                    color: AppColors.orange,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  " points",
+                                                  style: const TextStyle(
+                                                    fontSize: 14,
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        Container(
+                                          height: 1,
+                                          color: Colors.grey,
+                                        ),
+                                      ],
+                                    ),
 
-                        //Facebook
-                        Container(
-                          height: height * 0.1,
-                          width: width * 0.8,
-                          decoration: BoxDecoration(
-                            color: const Color(0xffEFF1FF),
-                            borderRadius: BorderRadius.circular(23),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Image.asset(
-                                'assets/images/fb.png',
-                              ),
-                              Column(
-                                children: [
-                                  SizedBox(
-                                    height: height * 0.03,
-                                  ),
-                                  const Text(
-                                    'Review this item for',
-                                    style: TextStyle(
-                                      fontSize: 14,
+                                    //Stamps
+                                    InkWell(
+                                      onTap: () {
+                                        // Get.to(() => details());
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: AppColors.green,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        height: height * 0.025,
+                                        width: width * 0.12,
+                                        child: Center(
+                                          child: Text(
+                                            'Claim',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  Row(
-                                    children: const [
-                                      Text(
-                                        '10 ',
-                                        style: TextStyle(
-                                          color: AppColors.orange,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                      Text(
-                                        'points !',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: height * 0.05,
-                                  left: width * 0.07,
+                                  ],
                                 ),
-                                child: Container(
-                                  color: AppColors.orange,
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: width * 0.01,
-                                      vertical: height * 0.002,
-                                    ),
-                                    child: const Text(
-                                      'Ongoing',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-
-                        //Twitter
-                        SizedBox(height: height * 0.03),
-                        Container(
-                          height: height * 0.1,
-                          width: width * 0.8,
-                          decoration: BoxDecoration(
-                            color: const Color(0xffEFF1FF),
-                            borderRadius: BorderRadius.circular(23),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Image.asset(
-                                'assets/images/twitter.png',
                               ),
-                              Column(
-                                children: [
-                                  SizedBox(
-                                    height: height * 0.03,
-                                  ),
-                                  const Text(
-                                    'Review this item for',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                  Row(
-                                    children: const [
-                                      Text(
-                                        '10 ',
-                                        style: TextStyle(
-                                          color: AppColors.orange,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                      Text(
-                                        'points !',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: height * 0.05,
-                                  left: width * 0.07,
-                                ),
-                                child: Container(
-                                  width: width * 0.15,
-                                  color: AppColors.red,
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: width * 0.01,
-                                      vertical: height * 0.002,
-                                    ),
-                                    child: const Text(
-                                      'Draft',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        //Instagram
-                        SizedBox(height: height * 0.03),
-                        Container(
-                          height: height * 0.1,
-                          width: width * 0.8,
-                          decoration: BoxDecoration(
-                            color: const Color(0xffEFF1FF),
-                            borderRadius: BorderRadius.circular(23),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Image.asset(
-                                'assets/images/insta.png',
-                              ),
-                              Column(
-                                children: [
-                                  SizedBox(
-                                    height: height * 0.03,
-                                  ),
-                                  const Text(
-                                    'Review this item for',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        '10 ',
-                                        style: TextStyle(
-                                          color: AppColors.orange,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                      const Text(
-                                        'points !',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                            ),
+                            Divider(
+                              color: Colors.black54,
+                            )
+                          ],
+                        );
+                      },
                     ),
-                    Container(),
+
+                    //Stamps
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: tasks.length,
+                      itemBuilder: (_, index) {
+                        return Column(
+                          children: [
+                            SizedBox(
+                              height: height * 0.10,
+                              width: width,
+                              child: Padding(
+                                padding: EdgeInsets.only(right: width * 0.05),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.all(height * 0.01),
+                                          child: Container(
+                                            height: width * 0.150,
+                                            width: width * 0.15,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              image: DecorationImage(
+                                                image: AssetImage(
+                                                    'assets/images/lereve.jpg'),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                top: height * 0.025,
+                                              ),
+                                              child: Text(
+                                                tasks[index],
+                                                style: const TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  points[index],
+                                                  style: const TextStyle(
+                                                    fontSize: 20,
+                                                    color: AppColors.orange,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  " Stamps",
+                                                  style: const TextStyle(
+                                                    fontSize: 18,
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        Container(
+                                          height: 1,
+                                          color: Colors.grey,
+                                        ),
+                                      ],
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        // Get.to(() => details());
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: AppColors.green,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        height: height * 0.025,
+                                        width: width * 0.12,
+                                        child: Center(
+                                          child: Text(
+                                            'Claim',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Divider(
+                              color: Colors.black54,
+                            )
+                          ],
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
             ],
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: InkWell(
+          onTap: () {
+            showModalBottomSheet(
+                backgroundColor: Colors.transparent,
+                isScrollControlled: true,
+                elevation: 10,
+                context: context,
+                builder: (context) {
+                  return StatefulBuilder(builder: (context, setState) {
+                    return SingleChildScrollView(
+                      child: Container(
+                          decoration: new BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: new BorderRadius.only(
+                              topLeft: const Radius.circular(30.0),
+                              topRight: const Radius.circular(30.0),
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Filter",
+                                      style: TextStyle(color: Colors.grey),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.restaurant,
+                                          color: Colors.teal,
+                                        ),
+                                        Text(
+                                          " Restaurant",
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Checkbox(
+                                      value: selected,
+                                      onChanged: (v) {
+                                        setState(() {
+                                          selected = v!;
+                                        });
+                                      })
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.restaurant,
+                                          color: Colors.teal,
+                                        ),
+                                        Text(
+                                          " Grocieries",
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Checkbox(
+                                      value: selected,
+                                      onChanged: (v) {
+                                        setState(() {
+                                          selected = v!;
+                                        });
+                                      })
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.restaurant,
+                                          color: Colors.teal,
+                                        ),
+                                        Text(
+                                          " Food Delivery",
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Checkbox(
+                                      value: selected,
+                                      onChanged: (v) {
+                                        setState(() {
+                                          selected = v!;
+                                        });
+                                      })
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.restaurant,
+                                          color: Colors.teal,
+                                        ),
+                                        Text(
+                                          " Online Shop",
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Checkbox(
+                                      value: selected,
+                                      onChanged: (v) {
+                                        setState(() {
+                                          selected = v!;
+                                        });
+                                      })
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Container(
+                                    width: width,
+                                    height: height / 25,
+                                    decoration: BoxDecoration(
+                                      color: Colors.teal,
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: Center(
+                                        child: Text(
+                                      'Apply Filter',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    )),
+                                  ),
+                                ),
+                              )
+                            ],
+                          )),
+                    );
+                  });
+                });
+          },
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.teal, borderRadius: BorderRadius.circular(10)),
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.filter_list,
+                    color: Colors.white,
+                  ),
+                  Text(
+                    '  Filter  ',
+                    style: TextStyle(color: Colors.white),
+                  )
+                ],
+              ),
+            ),
           ),
         ),
       ),
